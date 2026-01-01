@@ -9,7 +9,7 @@ export const useContacts = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.post('/api/contact', data);
+      const response = await api.post('/contact', data);
       return response.data.data;
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to submit message');
@@ -23,7 +23,7 @@ export const useContacts = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.get('/api/contact/my-messages');
+      const response = await api.get('/contact/my-messages');
       return response.data.data || [];
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to fetch messages');
@@ -37,7 +37,7 @@ export const useContacts = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.get('/api/admin/contacts');
+      const response = await api.get('/admin/contacts');
       return response.data.data || [];
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to fetch messages');
@@ -51,7 +51,7 @@ export const useContacts = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.put(`/api/contact/${id}`, data);
+      const response = await api.put(`/contact/${id}`, data);
       return response.data.data;
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to update message');
@@ -65,7 +65,7 @@ export const useContacts = () => {
     setLoading(true);
     setError(null);
     try {
-      await api.delete(`/api/contact/${id}`);
+      await api.delete(`/contact/${id}`);
       return true;
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to delete message');
@@ -79,7 +79,7 @@ export const useContacts = () => {
     setLoading(true);
     setError(null);
     try {
-      await api.delete(`/api/admin/contacts/${id}`);
+      await api.delete(`/admin/contacts/${id}`);
       return true;
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to delete message');
@@ -93,7 +93,7 @@ export const useContacts = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.post(`/api/admin/contacts/${id}/reply`, { message });
+      const response = await api.post(`/admin/contacts/${id}/reply`, { message });
       return response.data.data;
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to reply to message');

@@ -21,7 +21,7 @@ const AdminDashboard = () => {
 
   const fetchStats = async () => {
     try {
-      const response = await api.get('/api/admin/stats');
+      const response = await api.get('/admin/stats');
       setStats(response.data.data);
       setLastUpdated(new Date());
     } catch (error) {
@@ -33,7 +33,7 @@ const AdminDashboard = () => {
 
   const handleDownloadAll = async () => {
     try {
-      const response = await api.post('/api/admin/media/zip', {}, {
+      const response = await api.post('/admin/media/zip', {}, {
         responseType: 'blob',
       });
       const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -51,7 +51,7 @@ const AdminDashboard = () => {
 
   const handleDownloadReport = async () => {
     try {
-      const response = await api.get('/api/admin/reports/analytics.txt', {
+      const response = await api.get('/admin/reports/analytics.txt', {
         responseType: 'blob',
       });
       const url = window.URL.createObjectURL(new Blob([response.data]));

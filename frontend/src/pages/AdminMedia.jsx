@@ -34,7 +34,7 @@ const AdminMedia = () => {
       if (isShared) params.append('isShared', isShared);
       if (ownerId) params.append('ownerId', ownerId);
 
-      const response = await api.get(`/api/admin/media?${params.toString()}`);
+      const response = await api.get(`/admin/media?${params.toString()}`);
       setMedia(response.data.data || []);
     } catch (error) {
       showToast('Failed to load media', 'error');
@@ -59,7 +59,7 @@ const AdminMedia = () => {
       return;
     }
     try {
-      await api.delete(`/api/admin/media/${id}`);
+      await api.delete(`/admin/media/${id}`);
       showToast('Media deleted successfully', 'success');
       loadMedia();
     } catch (error) {
@@ -70,7 +70,7 @@ const AdminMedia = () => {
   const handleDeleteMultiple = async () => {
     try {
       for (const id of selectedImages) {
-        await api.delete(`/api/admin/media/${id}`);
+        await api.delete(`/admin/media/${id}`);
       }
       showToast(`${selectedImages.length} media deleted successfully`, 'success');
       setSelectedImages([]);
@@ -83,7 +83,7 @@ const AdminMedia = () => {
 
   const handleDownloadAll = async () => {
     try {
-      const response = await api.post('/api/admin/media/zip', {}, {
+      const response = await api.post('/admin/media/zip', {}, {
         responseType: 'blob',
       });
       const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -101,7 +101,7 @@ const AdminMedia = () => {
 
   const handleDownloadSelected = async () => {
     try {
-      const response = await api.post('/api/admin/media/zip', { ids: selectedImages }, {
+      const response = await api.post('/admin/media/zip', { ids: selectedImages }, {
         responseType: 'blob',
       });
       const url = window.URL.createObjectURL(new Blob([response.data]));

@@ -1,13 +1,14 @@
 import axios from 'axios';
 
-const apiBase = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+const raw = import.meta.env.VITE_API_BASE_URL || "";
+const base = raw.replace(/\/$/, "");
 
-const client = axios.create({
-  baseURL: apiBase,
+const api = axios.create({
+  baseURL: `${base}/api`,
   withCredentials: true,
 });
 
-client.interceptors.request.use(
+api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -20,7 +21,7 @@ client.interceptors.request.use(
   }
 );
 
-client.interceptors.response.use(
+api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
@@ -32,4 +33,4 @@ client.interceptors.response.use(
   }
 );
 
-export default client;
+export default api;
