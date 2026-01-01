@@ -31,7 +31,7 @@ const ImageDetail = () => {
 
   const fetchImage = async () => {
     try {
-      const response = await api.get(`/media/${id}`);
+      const response = await api.get(`/api/media/${id}`);
       setImage(response.data.data);
     } catch (error) {
       showToast('Failed to load image', 'error');
@@ -43,7 +43,7 @@ const ImageDetail = () => {
 
   const fetchAllImages = async () => {
     try {
-      const response = await api.get('/media');
+      const response = await api.get('/api/media');
       const images = response.data.data || [];
       setAllImages(images);
       const index = images.findIndex((img) => img._id === id);

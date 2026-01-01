@@ -36,7 +36,7 @@ const Dashboard = () => {
         return;
       }
 
-      const response = await api.get('/media');
+      const response = await api.get('/api/media');
       const allImages = response.data.data || [];
 
       const myImages = allImages.filter((img) => {

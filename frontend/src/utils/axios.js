@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+// Use VITE_API_BASE_URL directly, removing trailing slash
+const base = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+const baseURL = base || '/';
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  baseURL,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',

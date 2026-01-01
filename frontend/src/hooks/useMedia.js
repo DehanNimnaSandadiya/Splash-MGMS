@@ -23,7 +23,7 @@ export const useMedia = () => {
       if (filters.personal !== undefined)
         params.append('personal', filters.personal);
 
-      const response = await api.get(`/media?${params.toString()}`);
+      const response = await api.get(`/api/media?${params.toString()}`);
       setMedia(response.data.data || []);
       return response.data.data || [];
     } catch (err) {
@@ -52,7 +52,7 @@ export const useMedia = () => {
       if (metadata.isShared !== undefined)
         formData.append('isShared', metadata.isShared);
 
-      const response = await api.post('/media/upload', formData, {
+      const response = await api.post('/api/media/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       return response.data.data;
@@ -68,7 +68,7 @@ export const useMedia = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await api.put(`/media/${id}`, updates);
+      const response = await api.put(`/api/media/${id}`, updates);
       return response.data.data;
     } catch (err) {
       setError(err.response?.data?.error || 'Update failed');
@@ -82,7 +82,7 @@ export const useMedia = () => {
     setLoading(true);
     setError(null);
     try {
-      await api.delete(`/media/${id}`);
+      await api.delete(`/api/media/${id}`);
       return true;
     } catch (err) {
       setError(err.response?.data?.error || 'Delete failed');
@@ -96,7 +96,7 @@ export const useMedia = () => {
     setLoading(true);
     setError(null);
     try {
-      await api.delete('/media/multiple', { data: { imageIds: ids } });
+      await api.delete('/api/media/multiple', { data: { imageIds: ids } });
       return true;
     } catch (err) {
       setError(err.response?.data?.error || 'Delete failed');
@@ -109,7 +109,7 @@ export const useMedia = () => {
   const downloadZip = async (ids) => {
     try {
       const response = await api.post(
-        '/media/download-zip',
+        '/api/media/download-zip',
         { imageIds: ids },
         { responseType: 'blob' }
       );

@@ -29,7 +29,7 @@ const UserProfile = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await api.put(`/admin/users/${user.id}`, formData);
+      await api.put(`/api/admin/users/${user.id}`, formData);
       showToast('Profile updated successfully', 'success');
       window.location.reload();
     } catch (error) {

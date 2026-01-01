@@ -28,7 +28,7 @@ const AdminUserManagement = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await api.get('/admin/users');
+      const response = await api.get('/api/admin/users');
       setUsers(response.data.data || []);
     } catch (error) {
       showToast('Failed to load users', 'error');
@@ -49,7 +49,7 @@ const AdminUserManagement = () => {
 
   const handleUpdate = async () => {
     try {
-      await api.put(`/admin/users/${editingUser._id}`, editForm);
+      await api.put(`/api/admin/users/${editingUser._id}`, editForm);
       showToast('User updated successfully', 'success');
       setEditingUser(null);
       fetchUsers();
@@ -63,7 +63,7 @@ const AdminUserManagement = () => {
       return;
     }
     try {
-      await api.patch(`/admin/users/${userId}/deactivate`);
+      await api.patch(`/api/admin/users/${userId}/deactivate`);
       showToast('User deactivated successfully', 'success');
       fetchUsers();
     } catch (error) {
@@ -73,7 +73,7 @@ const AdminUserManagement = () => {
 
   const handleActivate = async (userId) => {
     try {
-      await api.patch(`/admin/users/${userId}/activate`);
+      await api.patch(`/api/admin/users/${userId}/activate`);
       showToast('User activated successfully', 'success');
       fetchUsers();
     } catch (error) {

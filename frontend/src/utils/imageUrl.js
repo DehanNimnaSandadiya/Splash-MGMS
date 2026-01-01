@@ -5,15 +5,16 @@ export const getImageUrl = (url) => {
     return url;
   }
   
-  const apiBase = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || '/api';
+  const base = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
   
-  if (apiBase.startsWith('http')) {
-    const backendUrl = apiBase.replace(/\/api$/, '');
+  if (base && base.startsWith('http')) {
+    // If base URL is provided (production), construct full URL
+    const backendUrl = base.replace(/\/api$/, '');
     const path = url.startsWith('/') ? url : `/${url}`;
     return `${backendUrl}${path}`;
   }
   
-  // For relative URLs, use the current origin (works for both local and production)
+  // For relative URLs (local development or when base is not set)
   const path = url.startsWith('/') ? url : `/${url}`;
   return path;
 };
