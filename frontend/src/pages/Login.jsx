@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await api.post('/auth/login', {
+      const response = await api.post('/api/auth/login', {
         email,
         password,
       });
@@ -43,8 +43,11 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-    const backendUrl = apiBaseUrl && apiBaseUrl !== '/api' 
-      ? apiBaseUrl 
+    // For OAuth redirects, we need the full backend URL
+    // If VITE_API_BASE_URL is a full URL (production), use it
+    // Otherwise, use localhost for local development
+    const backendUrl = apiBaseUrl && apiBaseUrl.startsWith('http')
+      ? apiBaseUrl
       : 'http://localhost:5000/api';
     window.location.href = `${backendUrl}/auth/google`;
   };

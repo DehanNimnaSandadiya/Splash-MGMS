@@ -13,7 +13,8 @@ export const getImageUrl = (url) => {
     return `${backendUrl}${path}`;
   }
   
+  // For relative URLs, use the current origin (works for both local and production)
   const path = url.startsWith('/') ? url : `/${url}`;
-  return `http://localhost:5000${path}`;
+  return path;
 };
 

@@ -25,7 +25,7 @@ const ForgotPassword = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await api.post('/auth/forgot-password', { email });
+      await api.post('/api/auth/forgot-password', { email });
       setStep(2);
       showToast('OTP sent to your email', 'success');
     } catch (error) {
@@ -46,7 +46,7 @@ const ForgotPassword = () => {
     }
     setLoading(true);
     try {
-      await api.post('/auth/reset-password', {
+      await api.post('/api/auth/reset-password', {
         email,
         otp,
         newPassword,
