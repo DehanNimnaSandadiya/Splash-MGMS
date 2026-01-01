@@ -1,18 +1,13 @@
 import axios from 'axios';
 
-// Use VITE_API_BASE_URL directly, removing trailing slash
-const base = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
-const baseURL = base || '/';
+const apiBase = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
 
-const api = axios.create({
-  baseURL,
+const client = axios.create({
+  baseURL: apiBase,
   withCredentials: true,
-  headers: {
-    'Content-Type': 'application/json',
-  },
 });
 
-api.interceptors.request.use(
+client.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -25,7 +20,7 @@ api.interceptors.request.use(
   }
 );
 
-api.interceptors.response.use(
+client.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
@@ -37,4 +32,4 @@ api.interceptors.response.use(
   }
 );
 
-export default api;
+export default client;
