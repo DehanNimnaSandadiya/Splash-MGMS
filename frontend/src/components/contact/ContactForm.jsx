@@ -44,7 +44,7 @@ const ContactForm = ({ onSubmit, loading = false }) => {
                 setFormData({ ...formData, message: e.target.value })
               }
               rows="6"
-              className="w-full px-4 py-3 border border-slate-200/80 dark:border-white/10 rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:focus:ring-luxury-glow/50 focus:border-cyan-500/40 dark:focus:border-luxury-glow/50 bg-white dark:bg-white/5 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500"
+              className="w-full px-4 py-3 border border-slate-300 dark:border-white/25 rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:focus:ring-luxury-glow/50 focus:border-cyan-500/40 dark:focus:border-luxury-glow/50 bg-white dark:bg-white/5 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-400"
               required
             />
           </div>

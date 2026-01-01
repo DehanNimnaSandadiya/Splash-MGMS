@@ -287,14 +287,18 @@ export const googleOAuthCallback = asyncHandler(async (req, res) => {
   const token = generateToken(user);
   const refreshToken = generateRefreshToken(user);
 
-  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+  const clientUrl = (process.env.CLIENT_URL || '').replace(/\/$/, '');
+  if (!clientUrl) {
+    throw new AppError('CLIENT_URL environment variable is not configured', 500);
+  }
+
   const userData = {
     id: user._id,
     email: user.email,
     name: user.name,
     role: user.role,
   };
-  const redirectUrl = `${frontendUrl}/auth/callback?token=${token}&refreshToken=${refreshToken}&user=${encodeURIComponent(
+  const redirectUrl = `${clientUrl}/auth/callback?token=${token}&refreshToken=${refreshToken}&user=${encodeURIComponent(
     JSON.stringify(userData)
   )}`;
 

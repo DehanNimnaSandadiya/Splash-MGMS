@@ -44,11 +44,11 @@ const Modal = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.2 }}
-            className={`bg-white dark:bg-gray-800 rounded-2xl shadow-xl ${sizes[size]} w-full max-h-[90vh] overflow-hidden flex flex-col ${className}`}
+            className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-2xl shadow-xl ${sizes[size]} w-full max-h-[90vh] overflow-hidden flex flex-col ${className}`}
             onClick={(e) => e.stopPropagation()}
           >
             {title && (
-              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+              <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-600 flex justify-between items-center">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                   {title}
                 </h2>

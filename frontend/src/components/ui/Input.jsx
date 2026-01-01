@@ -32,16 +32,16 @@ const Input = ({
         placeholder={placeholder}
         className={`w-full px-4 py-3 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:focus:ring-luxury-glow/50 focus:border-cyan-500/40 dark:focus:border-luxury-glow/50 transition-all duration-300 ${
           error
-            ? 'border-red-500 dark:border-red-500 bg-red-50 dark:bg-red-500/10'
-            : 'border-slate-200/80 dark:border-white/10 bg-white dark:bg-white/5'
-        } text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 hover:bg-slate-50 dark:hover:bg-white/10 ${className}`}
+            ? 'border-red-500 dark:border-red-400 bg-red-50 dark:bg-red-500/10'
+            : 'border-slate-300 dark:border-white/25 bg-white dark:bg-white/5'
+        } text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-400 hover:bg-slate-50 dark:hover:bg-white/10 ${className}`}
         {...props}
       />
       {error && (
         <motion.p
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-2 text-sm text-red-400"
+          className="mt-2 text-sm text-red-500 dark:text-red-400"
         >
           {error}
         </motion.p>

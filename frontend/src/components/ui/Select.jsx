@@ -28,8 +28,8 @@ const Select = ({
         onChange={onChange}
         className={`w-full px-4 py-3 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:focus:ring-luxury-glow/50 focus:border-cyan-500/40 dark:focus:border-luxury-glow/50 transition-all duration-300 ${
           error
-            ? 'border-red-500 dark:border-red-500 bg-red-50 dark:bg-red-500/10'
-            : 'border-slate-200/80 dark:border-white/10 bg-white dark:bg-white/5'
+            ? 'border-red-500 dark:border-red-400 bg-red-50 dark:bg-red-500/10'
+            : 'border-slate-300 dark:border-white/25 bg-white dark:bg-white/5'
         } text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-white/10 ${className}`}
         {...props}
       >
@@ -42,7 +42,7 @@ const Select = ({
           <option
             key={option.value}
             value={option.value}
-            className="bg-white dark:bg-gray-800"
+            className="bg-white dark:bg-gray-800 text-slate-900 dark:text-slate-100"
           >
             {option.label}
           </option>
