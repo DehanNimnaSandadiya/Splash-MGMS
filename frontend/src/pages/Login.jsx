@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Sun, Moon } from 'lucide-react';
 import api from '../utils/axios';
 import { useAuth } from '../hooks/useAuth';
 import { useToast } from '../components/ui/Toast';
+import { useTheme } from '../contexts/ThemeContext';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import Card from '../components/ui/Card';
@@ -14,6 +16,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const { showToast } = useToast();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -47,10 +50,23 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-luxury-dark py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:bg-luxury-dark py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background Effects */}
-      <div className="fixed inset-0 gradient-mesh opacity-30" />
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(0,229,255,0.1),transparent_50%)]" />
+      <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:gradient-mesh opacity-30 dark:opacity-30" />
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(29,36,116,0.05),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(0,229,255,0.1),transparent_50%)]" />
+
+      {/* Theme Toggle */}
+      <button
+        onClick={toggleTheme}
+        className="fixed top-6 right-6 p-2.5 rounded-xl text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-all duration-300 z-50"
+        aria-label="Toggle theme"
+      >
+        {theme === 'dark' ? (
+          <Sun className="w-5 h-5" />
+        ) : (
+          <Moon className="w-5 h-5" />
+        )}
+      </button>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -64,7 +80,7 @@ const Login = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-4xl font-display font-bold text-white mb-2"
+              className="text-4xl font-display font-bold text-slate-900 dark:text-white mb-2"
             >
               Welcome Back
             </motion.h1>
@@ -72,7 +88,7 @@ const Login = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-gray-400"
+              className="text-slate-600 dark:text-gray-400"
             >
               Sign in to your account
             </motion.p>
@@ -97,7 +113,7 @@ const Login = () => {
             <div className="text-right">
               <Link
                 to="/forgot-password"
-                className="text-sm text-luxury-glow hover:text-luxury-cyan transition-colors"
+                className="text-sm text-luxury-indigo dark:text-luxury-glow hover:text-luxury-teal dark:hover:text-luxury-cyan transition-colors"
               >
                 Forgot password?
               </Link>
@@ -112,7 +128,7 @@ const Login = () => {
                 <div className="w-full border-t border-white/10" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-3 glass text-gray-400 text-xs">
+                <span className="px-3 glass text-slate-600 dark:text-gray-400 text-xs">
                   Or continue with
                 </span>
               </div>
@@ -148,11 +164,11 @@ const Login = () => {
               Login with Google
             </Button>
           </div>
-          <p className="mt-6 text-center text-sm text-gray-400">
+          <p className="mt-6 text-center text-sm text-slate-600 dark:text-gray-400">
             Don't have an account?{' '}
             <Link
               to="/register"
-              className="font-medium text-luxury-glow hover:text-luxury-cyan transition-colors"
+              className="font-medium text-luxury-indigo dark:text-luxury-glow hover:text-luxury-teal dark:hover:text-luxury-cyan transition-colors"
             >
               Register
             </Link>

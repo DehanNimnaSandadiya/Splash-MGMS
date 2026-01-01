@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Sun, Moon } from 'lucide-react';
 import api from '../utils/axios';
 import { useAuth } from '../hooks/useAuth';
 import { useToast } from '../components/ui/Toast';
+import { useTheme } from '../contexts/ThemeContext';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import Card from '../components/ui/Card';
@@ -22,6 +24,7 @@ const Register = () => {
   const [userId, setUserId] = useState(null);
   const { login } = useAuth();
   const { showToast } = useToast();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
@@ -92,6 +95,19 @@ const Register = () => {
       <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:gradient-mesh opacity-30 dark:opacity-30" />
       <div className="fixed inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(29,36,116,0.05),transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_30%,rgba(0,229,255,0.1),transparent_50%)]" />
 
+      {/* Theme Toggle */}
+      <button
+        onClick={toggleTheme}
+        className="fixed top-6 right-6 p-2.5 rounded-xl text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-all duration-300 z-50"
+        aria-label="Toggle theme"
+      >
+        {theme === 'dark' ? (
+          <Sun className="w-5 h-5" />
+        ) : (
+          <Moon className="w-5 h-5" />
+        )}
+      </button>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -108,10 +124,10 @@ const Register = () => {
             </Badge>
           </div>
           <div className="text-center mb-6">
-            <h1 className="text-4xl font-display font-bold text-white mb-2">
+            <h1 className="text-4xl font-display font-bold text-slate-900 dark:text-white mb-2">
               Create Account
             </h1>
-            <p className="text-gray-400">
+            <p className="text-slate-600 dark:text-gray-400">
               Step {step} of 2
             </p>
           </div>
@@ -179,11 +195,11 @@ const Register = () => {
                 onSubmit={handleVerifyOtp}
                 className="space-y-5"
               >
-                <div className="text-center mb-4 p-4 glass rounded-2xl border-luxury-glow/30">
-                  <p className="text-sm text-gray-400">
+                <div className="text-center mb-4 p-4 glass rounded-2xl border-luxury-indigo/30 dark:border-luxury-glow/30">
+                  <p className="text-sm text-slate-600 dark:text-gray-400">
                     We've sent a 6-digit OTP to
                   </p>
-                  <p className="font-medium text-luxury-glow mt-1">
+                  <p className="font-medium text-luxury-indigo dark:text-luxury-glow mt-1">
                     {formData.email}
                   </p>
                 </div>
@@ -221,11 +237,11 @@ const Register = () => {
               </motion.form>
             )}
           </AnimatePresence>
-          <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-6 text-center text-sm text-slate-600 dark:text-gray-400">
             Already have an account?{' '}
             <Link
               to="/login"
-              className="font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
+              className="font-medium text-luxury-indigo dark:text-luxury-glow hover:text-luxury-teal dark:hover:text-luxury-cyan transition-colors"
             >
               Login
             </Link>
