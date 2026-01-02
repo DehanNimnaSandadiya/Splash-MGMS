@@ -5,6 +5,8 @@ import Button from '../ui/Button';
 import { Sun, Moon, Menu, X, LogOut, User } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import lightLogo from '../../assets/logos/light/mgms-logo.png';
+import darkLogo from '../../assets/logos/dark/mgms-logo.png';
 
 const AppShell = () => {
   const { user, logout } = useAuth();
@@ -49,9 +51,13 @@ const AppShell = () => {
             <div className="flex items-center">
               <Link
                 to="/"
-                className="flex items-center px-2 py-2 text-2xl font-display font-bold text-luxury-indigo dark:text-luxury-glow hover:text-luxury-teal dark:hover:text-luxury-cyan transition-colors"
+                className="flex items-center px-2 py-2 hover:opacity-80 transition-opacity"
               >
-                MGMS
+                <img
+                  src={theme === 'dark' ? darkLogo : lightLogo}
+                  alt="MGMS Logo"
+                  className="h-12 md:h-14 w-auto"
+                />
               </Link>
               <div className="hidden md:ml-10 md:flex md:space-x-2">
                 {navLinks.map((link) => (

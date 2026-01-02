@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { useTheme } from '../contexts/ThemeContext';
+import lightLogo from '../assets/logos/light/mgms-logo.png';
+import darkLogo from '../assets/logos/dark/mgms-logo.png';
 
 const Landing = () => {
   const { theme, toggleTheme } = useTheme();
@@ -79,9 +81,15 @@ const Landing = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-2xl font-display font-bold text-luxury-indigo dark:text-luxury-glow"
+              className="flex items-center"
             >
-              MGMS
+              <Link to="/landing" className="hover:opacity-80 transition-opacity">
+                <img
+                  src={theme === 'dark' ? darkLogo : lightLogo}
+                  alt="MGMS Logo"
+                  className="h-12 md:h-14 w-auto"
+                />
+              </Link>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 20 }}

@@ -1,9 +1,13 @@
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { useTheme } from '../../contexts/ThemeContext';
 import Button from '../ui/Button';
+import lightLogo from '../../assets/logos/light/mgms-logo.png';
+import darkLogo from '../../assets/logos/dark/mgms-logo.png';
 
 const Layout = () => {
   const { user, logout } = useAuth();
+  const { theme } = useTheme();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -19,9 +23,13 @@ const Layout = () => {
             <div className="flex">
               <Link
                 to="/"
-                className="flex items-center px-2 py-2 text-xl font-bold text-primary-600"
+                className="flex items-center px-2 py-2 hover:opacity-80 transition-opacity"
               >
-                MGMS
+                <img
+                  src={theme === 'dark' ? darkLogo : lightLogo}
+                  alt="MGMS Logo"
+                  className="h-12 md:h-14 w-auto"
+                />
               </Link>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                 <Link
